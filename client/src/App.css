@@ -1,0 +1,164 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.wrapper{
+  display: flex;
+  justify-content: center;
+  background-color: #f5f5f5;
+}
+
+.title {
+  margin-left: 41px;
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+.select-title {
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+.rent-title {
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+.bike {
+  display: flex;
+  flex-direction: row;
+  background-color: #e8eaf1;
+  border-radius: 3px;
+  border: 1px solid #d5d8d9;
+  height: 155px;
+  width: 1330px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.inp {
+  height: 50px;
+  width: 380px;
+  border-radius: 3px;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  padding-left: 15px;
+  margin-left: 40px;
+}
+
+.select {
+  height: 52px;
+  width: 380px;
+  outline: none;
+  border-radius: 3px;
+  border: none;
+  font-size: 18px;
+  padding-left: 15px;
+}
+
+.price {
+  border-radius: 3px;
+  height: 50px;
+  width: 190px;
+  outline: none;
+  border: none;
+  font-size: 15px;
+}
+
+.btn {
+  background-color: #22ba99;
+  color: white;
+  height: 50px;
+  width: 165px;
+  /* margin-left: 25px; */
+  margin-right: 41px;
+  margin-top: 26px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  
+}
+
+.awailable__item {
+  max-width: 1295px;
+  height: 100px;
+  margin-top: 15px;
+  padding-left: 40px;
+  border-radius: 3px;
+  background-color: white;
+  border: 1px solid #d5d8d9;
+  display: flex;
+  justify-content: space-between;
+  font-size: 25px;
+  align-items: center;
+  /* flex-direction: row; */
+}
+
+.btn-cancel-rent {
+  background-color: #f1323f;
+  color: white;
+  height: 50px;
+  width: 165px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  margin-right: 40px;
+}
+
+.awailable__buttons {
+  margin-right: 40px;
+}
+
+.btn-rent {
+  background-color: #384fc8;
+  color: white;
+  height: 50px;
+  width: 165px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  margin-right: 26px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.btn-delete {
+  background-color: #f1323f;
+  color: white;
+  height: 50px;
+  width: 165px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.rent {
+  max-width: 1295px;
+  height: 100px;
+  margin-top: 15px;
+  padding-left: 40px;
+  border-radius: 3px;
+  background-color: white;
+  border: 1px solid #d5d8d9;
+  display: flex;
+  justify-content: space-between;
+  font-size: 25px;
+  align-items: center;
+}
