@@ -12,15 +12,9 @@ class BikeController {
         res.json(bikes);
     }
 
-    async getOneBike (req, res) {
-        const id = req.params.id;
-        const bike = await db.query(`SELECT FROM * bike where id = $1`, [id])
-        res.json(bike.row[0]);
-    }
-
     async updateBike (req, res) {
         const {id} = req.body
-        const bike = await db.query(`UPDATE bike SET rent = NOT rent WHERE bike.id = $1 RETURNING *`, [id])
+        const bike = await db.query(`UPDATE bike SET rent = NOT rent, rentdate = NOW() WHERE bike.id = $1 RETURNING *`, [id])
         res.json(bike.row);
     }
 

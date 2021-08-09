@@ -1,5 +1,4 @@
 export const Rent = ({bikes=[], onRent }) => {
-    
     const rent = bikes.filter( rt => rt.rent === true);
     const totalPrice = (arr) => {
         let sum = 0
@@ -10,8 +9,6 @@ export const Rent = ({bikes=[], onRent }) => {
     }
 
     const renderRent = () => { 
-        
-        console.log(rent);
         return rent.map( itm => (
             <div key={itm.id} className="rent">
                <div>{itm.name} / {itm.type} / {itm.price}$</div>

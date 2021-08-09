@@ -3,10 +3,6 @@ import axios from 'axios'
 const baseURL = 'http://localhost:4000/api/bike';
 
 export const ApiService = {
-    getBike: (id) => {
-        return axios.get(baseURL/ + id);
-    },
-
     getAllBikes: () => {
         return axios.get(baseURL);
     },

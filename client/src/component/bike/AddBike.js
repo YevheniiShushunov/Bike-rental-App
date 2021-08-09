@@ -10,32 +10,28 @@ export const AddBike = ({ name,  bikeType, price ,onChangeName, onChangePrice,on
     }
 
     const selectChangeType = (e) => {
-        onChangeType(e.currentTarget.value)         
+            onChangeType(e.currentTarget.value);    
     }
 
     return (
         <div>
             <div className="add-bike">
                 <div><h2>Create new rent</h2></div>
-                <div className="bike">
-                    
+                <div className="bike">   
                     <div className="box">
                         <div className="title">Bike name</div>
                         <div className="item">
                             <input value={name} onChange={handleChangeName} className="inp"></input>
                         </div>
                     </div>
-
                     <div className="box">
                         <div className="select-title">Type</div>
-                        <select className="item select" onChange={selectChangeType}>
-                                <option value="chose your type" disabled>chose your type</option>
+                        <select className="item select" onChange={selectChangeType} defaultValue="'Custom'">
                                 {bikeType.map(itm => (
                                     <option key={itm} value={itm}>{itm}</option>
                                 ))}
                             </select>
                     </div>
-
                     <div className="box">
                         <div className="rent-title">Rent price</div>
                         <div className="item price" >

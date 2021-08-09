@@ -1,3 +1,4 @@
+import React from 'react';
 import { AddBike } from "./AddBike";
 import { useState, useEffect } from 'react';
 import { RequestState } from '../rectypes/RequestState';
@@ -13,7 +14,7 @@ export const BikeContainer = () => {
     const [bikes, setBikes] = useState([]);
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
-    const [type, setType] = useState('');
+    const [type, setType] = useState('Custom');
     const bikeType = ["Custom", "Road", "Mountain", "Hybrid", "City", "Electric"]
     
 
@@ -24,7 +25,6 @@ export const BikeContainer = () => {
                 const response = await ApiService.getAllBikes(bike);
                 setBikes(response.data.rows);
                 setRsList(RequestState.succes);
-                console.log(response);
             } catch (e) {
                 setRsList(RequestState.failure);
             }
@@ -37,6 +37,7 @@ export const BikeContainer = () => {
                 setRsPost(RequestState.request);
                 await ApiService.addBike(name, type, price);
                 setName('');
+                setPrice('');
                 setRsPost(RequestState.succes);
                 await requestBikeList();
             } catch (e) {
