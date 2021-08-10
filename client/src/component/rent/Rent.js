@@ -1,4 +1,4 @@
-export const Rent = ({bikes=[], onRent,rentTime }) => {
+export const Rent = ({bikes=[], onRent}) => {
     const rent = bikes.filter( rt => rt.rent === true);      
     
     const totalPrice = (arr) => {

@@ -103,7 +103,6 @@ export const BikeContainer = () => {
                 bikeType={bikeType}
                 price={price} />
             <Rent
-                rentTime={rentTime}
                 bikes={bikes}
                 onRent={updateRentBike} />
             <Awailable 
