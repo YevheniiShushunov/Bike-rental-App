@@ -7,6 +7,10 @@ export const ApiService = {
         return axios.get(baseURL);
     },
 
+    getRentTime: () => {
+        return axios.get(baseURL + '/time');
+    },
+
     addBike: (name, type, price) => {
         return axios.post(baseURL, {name, type,price});
     },

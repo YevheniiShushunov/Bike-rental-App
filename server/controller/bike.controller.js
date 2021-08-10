@@ -12,6 +12,11 @@ class BikeController {
         res.json(bikes);
     }
 
+    async getRentTime (req, res) {
+        const RentTime = await db.query(`SELECT EXTRACT (EPOCH FROM current_timestamp - rentdate)/ 3600 FROM bike`)
+        res.json(RentTime);
+    }
+
     async updateBike (req, res) {
         const {id} = req.body
         const bike = await db.query(`UPDATE bike SET rent = NOT rent, rentdate = NOW() WHERE bike.id = $1 RETURNING *`, [id])

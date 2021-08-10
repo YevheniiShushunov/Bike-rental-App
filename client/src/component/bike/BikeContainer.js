@@ -8,13 +8,15 @@ import { Rent } from "../rent/Rent";
 
 export const BikeContainer = () => {
     const [rsList, setRsList] = useState(RequestState.none);
+    const [rsGetTime, setRsGetTime] = useState(RequestState.none)
     const [rsPost, setRsPost] = useState(RequestState.none);
-    const [rsUpdate, setRsUpdate] = useState([]);
-    const [rsDelete, setRsDelete] = useState([]);
+    const [rsUpdate, setRsUpdate] = useState(RequestState.none);
+    const [rsDelete, setRsDelete] = useState(RequestState.none);
     const [bikes, setBikes] = useState([]);
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
     const [type, setType] = useState('Custom');
+    const [rentTime, setRentTime] = useState([])
     const bikeType = ["Custom", "Road", "Mountain", "Hybrid", "City", "Electric"]
     
 
@@ -24,6 +26,7 @@ export const BikeContainer = () => {
                 setRsList(RequestState.request);
                 const response = await ApiService.getAllBikes(bike);
                 setBikes(response.data.rows);
+                getRentTimer();
                 setRsList(RequestState.succes);
             } catch (e) {
                 setRsList(RequestState.failure);
@@ -48,7 +51,7 @@ export const BikeContainer = () => {
     }
 
     const deleteBike = async (id) => {
-        if(rsDelete !== RequestState.request) {
+        if (rsDelete !== RequestState.request) {
             try {
                 setRsDelete(RequestState.request);
                 await ApiService.deleteBike(id)
@@ -61,7 +64,7 @@ export const BikeContainer = () => {
     }
 
     const updateRentBike = async (id) => {
-        if(rsUpdate !== RequestState.request) {
+        if (rsUpdate !== RequestState.request) {
             try {
                 setRsUpdate(RequestState.request);
                 await ApiService.updateRentStatus(id)
@@ -69,6 +72,20 @@ export const BikeContainer = () => {
                 await requestBikeList();
             } catch (e) {
                 setRsDelete(RequestState.failure);
+            }
+        }
+    }
+
+    const getRentTimer = async (time) => {
+        if (rsGetTime !== RequestState.request) {
+            try {
+                setRsGetTime(RequestState.request);
+                const response = await ApiService.getRentTime(time);
+                setRentTime(response.data.rows);
+                
+                setRsGetTime(RequestState.succes);
+            } catch(e) {
+                setRsGetTime(RequestState.failure)
             }
         }
     }
@@ -85,7 +102,8 @@ export const BikeContainer = () => {
                 onChangePrice={setPrice}
                 bikeType={bikeType}
                 price={price} />
-            <Rent 
+            <Rent
+                rentTime={rentTime}
                 bikes={bikes}
                 onRent={updateRentBike} />
             <Awailable 

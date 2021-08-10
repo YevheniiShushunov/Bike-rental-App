@@ -1,5 +1,5 @@
-export const Rent = ({bikes=[], onRent }) => {
-    const rent = bikes.filter( rt => rt.rent === true);
+export const Rent = ({bikes=[], onRent,rentTime }) => {
+    const rent = bikes.filter( rt => rt.rent === true);      
     
     const totalPrice = (arr) => {
         let sum = 0
@@ -12,12 +12,11 @@ export const Rent = ({bikes=[], onRent }) => {
     const renderRent = () => { 
         return rent.map( itm => (
             <div key={itm.id} className="rent">
-               <div>{itm.name} / {itm.type} / {itm.price}$</div>
+               <div>{itm.name} / {itm.type} / ${itm.price}</div>
                <div>
                 <button onClick={() => onRent(itm.id)} className="btn-cancel-rent">Cancel rent</button>
             </div>
-            </div> 
-            
+            </div>    
         ));       
     }
 

@@ -6,7 +6,7 @@ export const Awailable = ({bikes = [], onDelete,onRent}) => {
     const renderList = () => {
         return awailableBikes.map( itm => (
             <div key={itm.id} className="awailable__item">
-                <div>{itm.name} / {itm.type} / {itm.price}$ </div>
+                <div>{itm.name} / {itm.type} / ${itm.price}</div>
                 <div className="awailable__buttons">
                         <button onClick={() => onRent(itm.id)} className="btn-rent">Rent</button>
                         <button onClick={() => onDelete(itm.id)} className="btn-delete">Delete</button>
