@@ -5,6 +5,7 @@ import { RequestState } from '../rectypes/RequestState';
 import { ApiService } from '../api/Api';
 import { Awailable } from "../awailable/Awailable";
 import { Rent } from "../rent/Rent";
+import { Preloader } from '../preloader/Preloader';
 
 export const BikeContainer = () => {
     const [rsList, setRsList] = useState(RequestState.none);
@@ -102,13 +103,17 @@ export const BikeContainer = () => {
                 onChangePrice={setPrice}
                 bikeType={bikeType}
                 price={price} />
-            <Rent
-                bikes={bikes}
-                onRent={updateRentBike} />
-            <Awailable 
-                bikes={bikes} 
-                onDelete={deleteBike}
-                onRent={updateRentBike} />
+            <Preloader inProgress={rsUpdate === RequestState.request}>
+                <Rent
+                   bikes={bikes}
+                   onRent={updateRentBike} />
+            </Preloader>
+            <Preloader inProgress={rsDelete === RequestState.request && rsUpdate === RequestState.request}>
+                <Awailable 
+                    bikes={bikes} 
+                    onDelete={deleteBike}
+                    onRent={updateRentBike} />
+            </Preloader>
         </>
     )
 }
