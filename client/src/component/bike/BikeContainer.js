@@ -26,13 +26,13 @@ export const BikeContainer = () => {
     const requestBikeList = async (bike) => {
         if (rsList.list !== RequestState.request) {
             try {
-                setRsList({list:RequestState.request});
+                setRsList({...rsList, list:RequestState.request});
                 const response = await ApiService.getAllBikes(bike);
                 setBikes(response.data.rows);
                 getRentTimer();
-                setRsList({list:RequestState.succes });
+                setRsList({...rsList, list:RequestState.succes });
             } catch (e) {
-                setRsList({list:RequestState.failure});
+                setRsList({...rsList, list:RequestState.failure});
             }
         }
     }
@@ -40,14 +40,14 @@ export const BikeContainer = () => {
     const postBike = async () => {
         if (rsList.rsPost !== RequestState.request) {
             try {
-                setRsList({rsPost:RequestState.request});
+                setRsList({...rsList, rsPost:RequestState.request});
                 await ApiService.addBike(name, type, price);
                 setName('');
                 setPrice('');
-                setRsList({rsPost:RequestState.succes});
+                setRsList({...rsList, rsPost:RequestState.succes});
                 await requestBikeList();
             } catch (e) {
-                setRsList({rsPost: RequestState.failure});
+                setRsList({...rsList, rsPost: RequestState.failure});
             }
             
         }
@@ -56,12 +56,12 @@ export const BikeContainer = () => {
     const deleteBike = async (id) => {
         if (rsList.rsDelete !== RequestState.request) {
             try {
-                setRsList({rsDelete:RequestState.request});
+                setRsList({...rsList, rsDelete:RequestState.request});
                 await ApiService.deleteBike(id)
-                setRsList({rsDelete:RequestState.succes});
+                setRsList({...rsList, rsDelete:RequestState.succes});
                 await requestBikeList();
             } catch (e) {
-                setRsList({rsDelete: RequestState.failure});
+                setRsList({...rsList, rsDelete: RequestState.failure});
             }
         }
     }
@@ -69,12 +69,12 @@ export const BikeContainer = () => {
     const updateRentBike = async (id) => {
         if (rsList.rsUpdate !== RequestState.request) {
             try {
-                setRsList({rsUpdate: RequestState.request});
+                setRsList({...rsList, rsUpdate: RequestState.request});
                 await ApiService.updateRentStatus(id)
-                setRsList({rsUpdate: RequestState.succes});
+                setRsList({...rsList, rsUpdate: RequestState.succes});
                 await requestBikeList();
             } catch (e) {
-                setRsList({rsUpdate: RequestState.failure});
+                setRsList({...rsList, rsUpdate: RequestState.failure});
             }
         }
     }
@@ -82,13 +82,13 @@ export const BikeContainer = () => {
     const getRentTimer = async (time) => {
         if (rsList.rsGetTime !== RequestState.request) {
             try {
-                setRsList({rsGetTime: RequestState.request});
+                setRsList({...rsList, rsGetTime: RequestState.request});
                 const response = await ApiService.getRentTime(time);
                 setRentTime(response.data.rows);
                 
-                setRsList({rsGetTime: RequestState.succes});
+                setRsList({...rsList, rsGetTime: RequestState.succes});
             } catch(e) {
-                setRsList({rsGetTime: RequestState.failure})
+                setRsList({...rsList, rsGetTime: RequestState.failure})
             }
         }
     }
