@@ -19,20 +19,20 @@ export const BikeContainer = () => {
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
     const [type, setType] = useState('Custom');
+    // eslint-disable-next-line no-unused-vars
     const [rentTime, setRentTime] = useState([])
     const bikeType = ["Custom", "Road", "Mountain", "Hybrid", "City", "Electric"]
-    
 
     const requestBikeList = async (bike) => {
         if (rsList.list !== RequestState.request) {
             try {
-                setRsList({...rsList, list:RequestState.request});
+                setRsList((prevState) => ({...prevState, list:RequestState.request}));
                 const response = await ApiService.getAllBikes(bike);
                 setBikes(response.data.rows);
                 getRentTimer();
-                setRsList({...rsList, list:RequestState.succes });
+                setRsList((prevState) => ({...prevState, list:RequestState.succes }));
             } catch (e) {
-                setRsList({...rsList, list:RequestState.failure});
+                setRsList((prevState) => ({...prevState, list:RequestState.failure}));
             }
         }
     }
@@ -40,14 +40,14 @@ export const BikeContainer = () => {
     const postBike = async () => {
         if (rsList.rsPost !== RequestState.request) {
             try {
-                setRsList({...rsList, rsPost:RequestState.request});
+                setRsList((prevState) => ( {...prevState, rsPost:RequestState.request}));
                 await ApiService.addBike(name, type, price);
                 setName('');
                 setPrice('');
-                setRsList({...rsList, rsPost:RequestState.succes});
+                setRsList((prevState) => ({...prevState, rsPost:RequestState.succes}));
                 await requestBikeList();
             } catch (e) {
-                setRsList({...rsList, rsPost: RequestState.failure});
+                setRsList((prevState) => ({...prevState, rsPost: RequestState.failure}));
             }
             
         }
@@ -56,12 +56,12 @@ export const BikeContainer = () => {
     const deleteBike = async (id) => {
         if (rsList.rsDelete !== RequestState.request) {
             try {
-                setRsList({...rsList, rsDelete:RequestState.request});
+                setRsList((prevState) => ({...prevState, rsDelete:RequestState.request}));
                 await ApiService.deleteBike(id)
-                setRsList({...rsList, rsDelete:RequestState.succes});
+                setRsList((prevState) => ({...prevState, rsDelete:RequestState.succes}));
                 await requestBikeList();
             } catch (e) {
-                setRsList({...rsList, rsDelete: RequestState.failure});
+                setRsList((prevState) => ({...prevState,  rsDelete: RequestState.failure}));
             }
         }
     }
@@ -69,12 +69,12 @@ export const BikeContainer = () => {
     const updateRentBike = async (id) => {
         if (rsList.rsUpdate !== RequestState.request) {
             try {
-                setRsList({...rsList, rsUpdate: RequestState.request});
+                setRsList((prevState) => ({...prevState, rsUpdate: RequestState.request}));
                 await ApiService.updateRentStatus(id)
-                setRsList({...rsList, rsUpdate: RequestState.succes});
+                setRsList((prevState) => ({...prevState, rsUpdate: RequestState.succes}));
                 await requestBikeList();
             } catch (e) {
-                setRsList({...rsList, rsUpdate: RequestState.failure});
+                setRsList((prevState) => ({...prevState, rsUpdate: RequestState.failure}));
             }
         }
     }
@@ -82,17 +82,17 @@ export const BikeContainer = () => {
     const getRentTimer = async (time) => {
         if (rsList.rsGetTime !== RequestState.request) {
             try {
-                setRsList({...rsList, rsGetTime: RequestState.request});
+                setRsList((prevState) => ({...prevState, rsGetTime: RequestState.request}));
                 const response = await ApiService.getRentTime(time);
                 setRentTime(response.data.rows);
-                
-                setRsList({...rsList, rsGetTime: RequestState.succes});
+                setRsList((prevState) => ({...prevState, rsGetTime: RequestState.succes}));
             } catch(e) {
-                setRsList({...rsList, rsGetTime: RequestState.failure})
+                setRsList((prevState) => ({...prevState, rsGetTime: RequestState.failure}))
             }
         }
     }
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => requestBikeList(), []);
 
     return (
